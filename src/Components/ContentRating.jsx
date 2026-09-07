@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import './ContentRating.css';
 
@@ -8,53 +7,40 @@ class ContentRating extends Component {
     this.state = {
       likes: 0,
       dislikes: 0,
-      handleLike:() => {
-        this.setState((prevState) => ({ likes: prevState.likes + 1, totalRatings: prevState.totalRatings + 1 })); }, handleDislike: () => { this.setState((prevState) => ({ dislikes: prevState.dislikes + 1, totalRatings: prevState.totalRatings + 1 })); },
-
-      handleDislike:() => {
-        this.setState((prevState) => ({
-            dislikes: prevState.dislikes + 1
-          }));
-
-      }
+      totalRatings: 0
     };
+    this.handleLike = this.handleLike.bind(this);
+    this.handleDislike = this.handleDislike.bind(this);
+  }
 
+  handleLike() {
+    this.setState((prevState) => ({
+      likes: prevState.likes + 1,
+      totalRatings: prevState.totalRatings + 1
+    }));
+  }
+
+  handleDislike() {
+    this.setState((prevState) => ({
+      dislikes: prevState.dislikes + 1,
+      totalRatings: prevState.totalRatings + 1
+    }));
   }
 
   render() {
     return (
-     <>
-     <div className='content-rating'></div>
-     <div className='content-rating'>
-     <p>
-    //Add text here
-     </p>
-     <div className='content-rating'>
-     <p>
-    //Add text here
-     </p>
-     <div className='rating-buttons'></div>
-     </div>
-     <div className='content-rating'>
-        <p>
-        ---Add text here---
-        </p>
-        <div className='rating-buttons'>
-        <button className="like-button" onClick={this.state.handleLike}>
+      <div className="content-rating">
+        <p>Text Content Rating</p>
+        <div className="rating-buttons">
+          <button className="like-btn" onClick={this.handleLike}>
             Like ({this.state.likes})
-            
-        </button>
-        <button className="dislike-button" nClick={this.state.handleDislike}>
+          </button>
+          <button className="dislike-btn" onClick={this.handleDislike}>
             Dislike ({this.state.dislikes})
-            
-        </button>
-        Total Ratings: {this.state.totalRatings}
+          </button>
         </div>
-        </div>
-   
-   
-        </div>
-        </>
+        <p>Total Ratings: {this.state.totalRatings}</p>
+      </div>
     );
   }
 }
